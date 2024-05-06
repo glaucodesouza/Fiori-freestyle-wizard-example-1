@@ -44,7 +44,10 @@ sap.ui.define([
 			this.model = new JSONModel();
 			this.model.setData({
 				productNameState: "Error",
-				productWeightState: "Error"
+				productWeightState: "Error",
+				loteInput1State: "Error",
+				loteInput2State: "Error",
+                
 			});
 			this.getView().setModel(this.model);
 			this.model.setProperty("/productType", "Mobile");
@@ -52,12 +55,21 @@ sap.ui.define([
 			this.model.setProperty("/navApiEnabled", true);
 			this.model.setProperty("/productVAT", false);
 			this.model.setProperty("/measurement", "");
+			this.model.setProperty("/loteInput1","");
+			this.model.setProperty("/loteInput2","");
+			this.model.setProperty("/loteInput2Visible",false);
+
+			
+
+
 			this._setEmptyValue("/productManufacturer");
 			this._setEmptyValue("/productDescription");
 			this._setEmptyValue("/size");
 			this._setEmptyValue("/productPrice");
 			this._setEmptyValue("/manufacturingDate");
 			this._setEmptyValue("/discountGroup");
+
+
 
         },
 
@@ -188,28 +200,53 @@ sap.ui.define([
 		},
 
 		additionalInfoValidation: function () {
-			var name = this.byId("ProductName").getValue();
-			var weight = parseInt(this.byId("ProductWeight").getValue());
 
-			if (isNaN(weight)) {
-				this._wizard.setCurrentStep(this.byId("ProductInfoStep"));
-				this.model.setProperty("/productWeightState", "Error");
+			let loteInput2Visible = this.model.getProperty("/loteInput2Visible");
+
+			let loteInput1 = this.byId("LoteInput1").getValue();
+			if (loteInput1.length == 10) {
+				this.model.setProperty("/loteInput1State", "None");
+				// alert("Lote correto 10 dígitos!");
+				if (!loteInput2Visible) {
+					let loteInput2VisibleX = prompt("Mostrar Lote 2 = X", "X");
+					if (loteInput2VisibleX) {
+						this.model.setProperty("/loteInput2Visible", true);
+					}					
+				}
+
 			} else {
-				this.model.setProperty("/productWeightState", "None");
+				this.model.setProperty("/loteInput1State", "Error");
 			}
 
-			if (name.length < 6) {
-				this._wizard.setCurrentStep(this.byId("ProductInfoStep"));
-				this.model.setProperty("/productNameState", "Error");
+			let loteInput2 = this.byId("LoteInput2").getValue();
+			if (loteInput2.length == 10) {
+				this.model.setProperty("/loteInput2State", "None");
 			} else {
-				this.model.setProperty("/productNameState", "None");
+				this.model.setProperty("/loteInput2State", "Error");
 			}
 
-			if (name.length < 6 || isNaN(weight)) {
-				this._wizard.invalidateStep(this.byId("ProductInfoStep"));
-			} else {
-				this._wizard.validateStep(this.byId("ProductInfoStep"));
-			}
+			// var name = this.byId("ProductName").getValue();
+			// var weight = parseInt(this.byId("ProductWeight").getValue());
+
+			// if (isNaN(weight)) {
+			// 	this._wizard.setCurrentStep(this.byId("ProductInfoStep"));
+			// 	this.model.setProperty("/productWeightState", "Error");
+			// } else {
+			// 	this.model.setProperty("/productWeightState", "None");
+			// }
+
+			// if (name.length < 6) {
+			// 	this._wizard.setCurrentStep(this.byId("ProductInfoStep"));
+			// 	this.model.setProperty("/productNameState", "Error");
+			// } else {
+			// 	this.model.setProperty("/productNameState", "None");
+			// }
+
+			// if (name.length < 6 || isNaN(weight)) {
+			// 	this._wizard.invalidateStep(this.byId("ProductInfoStep"));
+			// } else {
+			// 	this._wizard.validateStep(this.byId("ProductInfoStep"));
+			// }
 		},
 
 		optionalStepActivation: function () {

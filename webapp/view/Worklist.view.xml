@@ -29,7 +29,12 @@
 									alignItems="Center"
 									justifyContent="Center"
 									width="100%">
-
+								<Input valueStateText="Entrar 1o. Lote..."
+										valueState="{/loteInput1State}" id="LoteInput1" liveChange="additionalInfoValidation"
+										placeholder="Entrar 1o. Lote" value="{/loteInput1}"/>
+								<Input valueStateText="Entrar 2o. Lote..."
+										valueState="{/loteInput2State}" id="LoteInput2" liveChange="additionalInfoValidation"
+										placeholder="Entrar 2o. Lote" value="{/loteInput2}" visible="{/loteInput2Visible}"/>
 							</HBox>
 						</WizardStep>
 						<!-- 
@@ -78,13 +83,13 @@
 						<form:content>
 							<Label id="_IDGenLabel12" text="Type"/>
 							<Text id="ProductTypeChosen" text="{/productType}"/>
-							<Link id="_IDGenLink1" press="editStepOne" text="Edit" />
+							<Link id="_IDGenLink1" press="editStepOne" text="Editar" />
 						</form:content>
 					</form:SimpleForm>
 
 					<!-- 
 					Passo 2
-					-->
+					 -->
 					<form:SimpleForm id="_IDGenSimpleForm5"
 							title="2. Product Information"
 							minWidth="1024"
@@ -99,15 +104,15 @@
 							<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
 							<Label id="_IDGenLabel16" text="Description"/>
 							<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
-							<Link id="_IDGenLink2" press="editStepTwo" text="Edit" />
+							<Link id="_IDGenLink2" press="editStepTwo" text="Editar" />
 						</form:content>
 					</form:SimpleForm>
 				</content>
 				<footer>
 					<Bar id="_IDGenBar1">
 						<contentRight>
-							<Button id="_IDGenButton2" text="Submit" press="handleWizardSubmit"/>
-							<Button id="_IDGenButton3" text="Cancel" press="handleWizardCancel"/>
+							<Button id="_IDGenButton2" text="Confirmr" press="handleWizardSubmit"/>
+							<Button id="_IDGenButton3" text="Cancelar" press="handleWizardCancel"/>
 						</contentRight>
 					</Bar>
 				</footer>
