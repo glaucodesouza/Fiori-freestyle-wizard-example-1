@@ -1,0 +1,225 @@
+<mvc:View
+    controllerName="fiorifreestylewizardv1.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		>
+
+    <NavContainer id="wizardNavContainer">
+		<pages>
+
+<Page
+				id="wizardContentPage"
+				showHeader="false">
+					<content>
+						<Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+								complete="wizardCompletedHandler">
+							<WizardStep id="ProductTypeStep"
+										title="Product Type"
+										validated="true">
+								<MessageStrip id="_IDGenMessageStrip1" class="sapUiSmallMarginBottom"
+										text="The Wizard control is supposed to break down large tasks, into smaller steps, easier for the user to work with."
+										showIcon="true"/>
+								<Text id="_IDGenText1" class="sapUiSmallMarginBottom"
+										text="Sed fermentum, mi et tristique ullamcorper, "/>
+								<HBox id="_IDGenHBox1"
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+									<SegmentedButton id="_IDGenSegmentedButton1"
+										width="320px"
+										selectionChange="setProductTypeFromSegmented">
+										<items>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem1" icon="sap-icon://iphone" text="Mobile"/>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem2" icon="sap-icon://sys-monitor" text="Desktop"/>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem3" icon="sap-icon://database" text="Other"/>
+										</items>
+									</SegmentedButton>
+								</HBox>
+							</WizardStep>
+							<WizardStep id="ProductInfoStep"
+										validated="false"
+										title="Product Information"
+										activate="additionalInfoValidation">
+								<MessageStrip id="_IDGenMessageStrip2" class="sapUiSmallMarginBottom"
+										text="Validation in the wizard is controlled by calling the validateStep(Step) and invalidateStep(Step) methods "
+										showIcon="true"/>
+								<Text id="_IDGenText2" text="Cras tellus leo, volutpat vitae ullamcorper eu, posuere malesuada nisl. Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien et viverra imperdiet, orci erat porttitor nulla, eget commodo metus nibh nec ipsum. Aliquam lacinia euismod metus, sollicitudin pellentesque purus volutpat eget. Pellentesque egestas erat quis eros convallis mattis. Mauris hendrerit sapien a malesu corper eu, posuere malesuada nisl. Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	corper eu, posuere malesuada nisl. Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	"/>
+								<form:SimpleForm id="_IDGenSimpleForm1"
+										editable="true"
+										layout="ResponsiveGridLayout">
+									<Label id="_IDGenLabel1" text="Name" required="true"/>
+									<Input valueStateText="Enter 6 symbols or more"
+											valueState="{/productNameState}" id="ProductName" liveChange="additionalInfoValidation"
+											placeholder="Enter name with length greater than 6" value="{/productName}"/>
+									<Label id="_IDGenLabel2" text="Weight" required="true"/>
+									<Input valueStateText="Enter digits"
+											valueState="{/productWeightState}" id="ProductWeight"
+											liveChange="additionalInfoValidation" type="Number" placeholder="Enter digits"
+											value="{/productWeight}"/>
+									<Label id="_IDGenLabel3" text="Manufacturer"/>
+									<Select id="_IDGenSelect1" selectedKey="{/productManufacturer}">
+										<core:Item id="_IDGenItem1" key="Apple" text="Apple"/>
+										<core:Item id="_IDGenItem2" key="Microsoft" text="Microsoft"/>
+										<core:Item id="_IDGenItem3" key="Google" text="Google"/>
+										<core:Item id="_IDGenItem4" key="Sony" text="Sony"/>
+										<core:Item id="_IDGenItem5" key="Samsung" text="Samsung"/>
+										<core:Item id="_IDGenItem6" key="Logitech" text="Logitech"/>
+									</Select>
+									<Label id="_IDGenLabel4" text="Description"/>
+									<TextArea id="_IDGenTextArea1" value="{/productDescription}" rows="8"/>
+								</form:SimpleForm>
+							</WizardStep>
+							<WizardStep id="OptionalInfoStep"
+										validated="true"
+										activate="optionalStepActivation"
+										title="Optional Information">
+								<MessageStrip id="_IDGenMessageStrip3" class="sapUiSmallMarginBottom"
+										text="You can validate steps by default with the validated='true' property of the step. The next button is always enabled."
+										showIcon="true"/>
+								<Text id="_IDGenText3" text="Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec ppellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	corper eu, posuere malesuada nisl. Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	"/>
+								<form:SimpleForm id="_IDGenSimpleForm2"
+										editable="true"
+										layout="ResponsiveGridLayout">
+									<Label id="_IDGenLabel5" text="Cover photo"/>
+									<Label id="_IDGenLabel6" text="Manufacturing date"/>
+									<DatePicker
+											id="DP3"
+											displayFormat="short"
+											value="{/manufacturingDate}"/>
+									<Label id="_IDGenLabel7" text="Availability"/>
+									<SegmentedButton id="_IDGenSegmentedButton2" selectedKey="{/availabilityType}">
+										<items>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem4" key="In store" text="In store"/>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem5" key="In depot" text="In depot"/>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem6" key="In repository" text="In repository"/>
+											<SegmentedButtonItem id="_IDGenSegmentedButtonItem7" key="Out of stock" text="Out of stock"/>
+										</items>
+									</SegmentedButton>
+									<Label id="_IDGenLabel8" text="Size"/>
+									<Input id="_IDGenInput1" value="{/size}"/>
+									<ComboBox id="_IDGenComboBox1" maxWidth="100px" selectedKey="{/measurement}">
+										<core:Item id="_IDGenItem7" key="X" text="X"/>
+										<core:Item id="_IDGenItem8" key="Y" text="Y"/>
+										<core:Item id="_IDGenItem9" key="Z" text="Z"/>
+									</ComboBox>
+
+								</form:SimpleForm>
+							</WizardStep>
+							<WizardStep id="PricingStep"
+										activate="pricingActivate"
+										complete="pricingComplete"
+										validated="true"
+										title="Pricing">
+								<MessageStrip id="_IDGenMessageStrip4" class="sapUiSmallMarginBottom"
+										text="You can use the wizard previousStep() and nextStep() methods to navigate from step to step without validation. Also you can use the GoToStep(step) method to scroll programmatically to previously visited steps."
+										showIcon="true"/>
+								<form:SimpleForm id="_IDGenSimpleForm3"
+										editable="true"
+										layout="ResponsiveGridLayout">
+									<Label id="_IDGenLabel9" text="Price"/>
+									<Input id="_IDGenInput2" value="{/productPrice}"/>
+									<Label id="_IDGenLabel10" text="Discount group"/>
+									<ComboBox id="_IDGenComboBox2" selectedKey="{/discountGroup}">
+										<core:Item id="_IDGenItem10" key="Kids" text="Kids"/>
+										<core:Item id="_IDGenItem11" key="Teens" text="Teens"/>
+										<core:Item id="_IDGenItem12" key="Adults" text="Adults"/>
+										<core:Item id="_IDGenItem13" key="Elderly" text="Elderly"/>
+									</ComboBox>
+									<Label id="_IDGenLabel11" text=" VAT is included"/>
+									<CheckBox id="_IDGenCheckBox1" selected="{/productVAT}"/>
+								</form:SimpleForm>
+							</WizardStep>
+						</Wizard>
+					</content>
+					<footer>
+						<OverflowToolbar id="_IDGenOverflowToolbar1">
+							<ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+							<Button id="_IDGenButton1" text="Cancel" press="handleWizardCancel"/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+				<Page id="wizardReviewPage" showHeader="false">
+					<content>
+						<form:SimpleForm id="_IDGenSimpleForm4"
+								title="1. Product Type"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label id="_IDGenLabel12" text="Type"/>
+								<Text id="ProductTypeChosen" text="{/productType}"/>
+								<Link id="_IDGenLink1" press="editStepOne" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+						<form:SimpleForm id="_IDGenSimpleForm5"
+								title="2. Product Information"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label id="_IDGenLabel13" text="Name"/>
+								<Text id="ProductNameChosen" text="{/productName}"/>
+								<Label id="_IDGenLabel14" text="Weight"/>
+								<Text id="ProductWeightChosen" text="{/productWeight}"/>
+								<Label id="_IDGenLabel15" text="Manufacturer"/>
+								<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
+								<Label id="_IDGenLabel16" text="Description"/>
+								<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
+								<Link id="_IDGenLink2" press="editStepTwo" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+						<form:SimpleForm id="_IDGenSimpleForm6"
+								title="3. Optional Information"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label id="_IDGenLabel17" text="Some text"/>
+								<Text id="_IDGenText4" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. "/>
+								<Label id="_IDGenLabel18" text="Manufacturing Date"/>
+								<Text id="ManufacturingDate" text="{/manufacturingDate}"/>
+								<Label id="_IDGenLabel19" text="Availability"/>
+								<Text id="AvailabilityChosen" text="{/availabilityType}"/>
+								<Label id="_IDGenLabel20" text="Size"/>
+								<HBox id="_IDGenHBox2">
+									<Text id="Size" text="{/size}"/>
+									<Text id="Size2" class="sapUiTinyMarginBegin" text="{/measurement}"/>
+								</HBox>
+								<Link id="_IDGenLink3" press="editStepThree" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+						<form:SimpleForm id="_IDGenSimpleForm7"
+								title="4. Pricing"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label id="_IDGenLabel21" text="Price"/>
+								<Text id="ProductPriceChosen" text="{/productPrice}"/>
+								<Label id="_IDGenLabel22" text="Discount Group"/>
+								<Text id="DiscountGroupChosen" text="{/discountGroup}"/>
+								<Label id="_IDGenLabel23" text="VAT Included"/>
+								<Text id="ProductVATChosen" text="{/productVAT}"/>
+								<Link id="_IDGenLink4" press="editStepFour" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+					</content>
+					<footer>
+						<Bar id="_IDGenBar1">
+							<contentRight>
+								<Button id="_IDGenButton2" text="Submit" press="handleWizardSubmit"/>
+								<Button id="_IDGenButton3" text="Cancel" press="handleWizardCancel"/>
+							</contentRight>
+						</Bar>
+					</footer>
+				</Page>
+
+        </pages>
+    </NavContainer>
+</mvc:View>
