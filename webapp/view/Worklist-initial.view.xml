@@ -1,0 +1,17 @@
+<mvc:View
+    controllerName="fiorifreestylewizardv1.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <NavContainer id="wizardNavContainer">
+			<pages>
+				<Page
+				id="wizardContentPage"
+				showHeader="false">
+					
+
+                </Page>
+        </pages>
+    </NavContainer>
+</mvc:View>
