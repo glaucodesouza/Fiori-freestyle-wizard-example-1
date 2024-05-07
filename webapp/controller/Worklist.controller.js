@@ -63,7 +63,7 @@ sap.ui.define(
           loteInput1State: "Error",
           loteInput2State: "Error",
         });
-        this.getView().setModel(this.model);
+        // this.getView().setModel(this.model);
         this.model.setProperty("/productType", "Mobile");
         this.model.setProperty("/availabilityType", "In Store");
         this.model.setProperty("/navApiEnabled", true);
@@ -226,12 +226,12 @@ sap.ui.define(
         if (loteInput1.length == 10) {
           this.model.setProperty("/loteInput1State", "None");
           // alert("Lote correto 10 dígitos!");
-          if (!loteInput2Visible) {
-            let loteInput2VisibleX = prompt("Mostrar Lote 2 = X", "X");
-            if (loteInput2VisibleX) {
-              this.model.setProperty("/loteInput2Visible", true);
-            }
-          }
+        //   if (!loteInput2Visible) {
+        //     let loteInput2VisibleX = prompt("Mostrar Lote 2 = X", "X");
+        //     if (loteInput2VisibleX) {
+        //       this.model.setProperty("/loteInput2Visible", true);
+        //     }
+        //   }
 
           this.get1();
         } else {
@@ -270,23 +270,54 @@ sap.ui.define(
       },
 
       get1: function () {
-        let hostPort = "";
-        let oDataPath = "/sap/opu/odata/sap/Z270FREEWIZARD01_SRV/";
-        let sServiceUrl = hostPort + oDataPath;
-        let oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
-        // let oModel = this.getView().getModel();
-        let sPath = "/Pedido('" + "4500000000" + "')";
-
-        oModel.read(sPath, {
+		// teste read 0
+        let sDataPath = "/sap/opu/odata/sap/Z270FREEWIZARD01_SRV";
+		let sPedido = "/PedidoSet(Ebeln1='" + "4500000001" + "')"
+        let sServiceUrl = sDataPath + sPedido;
+        let oModel = new sap.ui.model.odata.v2.ODataModel(sDataPath);
+		debugger;
+        oModel.read(sPedido, {
           success: function (oData, oResponse) {
-            // save variable
-          },
+            debugger;
+          }.bind(this),
           error: function (oError) {
-            // show error
-          },
+            debugger;
+          }.bind(this),
         });
 
-        // this.model.setProperty("/navApiEnabled", false);
+		// teste read 1
+        let sDataPath1 = "http://lnl-s4h.opustech.com.br:8000/sap/opu/odata/sap/Z270FREEWIZARD01_SRV";
+		let sPedido1 = "/PedidoSet(Ebeln1='" + "4500000002" + "')"
+        let sServiceUrl1 = sDataPath1 + sPedido1;
+        let oModel1 = new sap.ui.model.odata.v2.ODataModel(sDataPath1);
+		debugger;
+        oModel1.read(sPedido1, {
+          success: function (oData, oResponse) {
+            debugger;
+          }.bind(this),
+          error: function (oError) {
+            debugger;
+          }.bind(this),
+        });
+
+		// teste read 2
+        // let oModel2 = this.getView().getModel();
+		let oModel2 = this.getOwnerComponent().getModel();
+		debugger;
+		// oModel2 = this.getModel();
+        // let sPath = "/PedidoSet(Ebeln1='" + "4500000000" + "')";
+		let sPath = "/PedidoSet('" + "4500000003" + "')";
+		// debugger;
+        // oModel2.read(sPath, {
+		oModel2.read("/PedidoSet('4500000003')", {
+			success: function (oData, oResponse) {
+				debugger;
+			}.bind(this),
+			error: function (oError) {
+				debugger;
+			}.bind(this)
+		});
+        
       },
 
       optionalStepActivation: function () {
