@@ -270,9 +270,12 @@ sap.ui.define(
       },
 
       get1: function () {
-        let oModel = this.getView().getModel();
-
-        var sPath = "/Pedido(" + "4500000000" + ")";
+        let hostPort = "";
+        let oDataPath = "/sap/opu/odata/sap/Z270FREEWIZARD01_SRV/";
+        let sServiceUrl = hostPort + oDataPath;
+        let oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
+        // let oModel = this.getView().getModel();
+        let sPath = "/Pedido('" + "4500000000" + "')";
 
         oModel.read(sPath, {
           success: function (oData, oResponse) {
